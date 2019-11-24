@@ -1,0 +1,24 @@
+img{
+    width: 100%;
+    height: 100%;
+}
+
+.menufone {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    /* line-height: 30px; */
+    /* text-align: center; */
+}
+.menufone::-webkit-scrollbar {
+    display: none;
+}
+p{
+    font-family: '行楷';
+    font-size: 13px;
+}
+.biaopian{
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    float: left;
+}
