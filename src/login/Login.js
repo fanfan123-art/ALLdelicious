@@ -23,6 +23,7 @@ class Login extends React.Component {
                     <img src={require('../images/red.jpg')} className={LoginCss.img}></img>
                 </div>
                 <div className={LoginCss.loginbg02}></div>
+                {/* 背景 */}
                 <div className={LoginCss.logobg}>
                     <p className={LoginCss.font}>Delicious  |  通行证</p>
                 </div>
@@ -30,6 +31,7 @@ class Login extends React.Component {
                     <div className={LoginCss.enter}>
                         <p className={LoginCss.font04}>登  录</p>
                     </div>
+                    {/* 登录抬头 */}
                     <div className={LoginCss.Input}>
                         <Form onSubmit={this.handleSubmit} className={LoginCss.form}>
                             <Form.Item>
@@ -71,6 +73,7 @@ class Login extends React.Component {
                         </Form>
                     </div>
                 </div>
+                {/* 登录 */}
             </div>
         )
     }
