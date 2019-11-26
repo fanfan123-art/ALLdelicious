@@ -8,7 +8,6 @@ import {HashRouter as Router , Route , Switch} from 'react-router-dom';
 import { createBrowserHistory } from "history";
 import HomePage from './homepage/HomePage';
 
-var indexCss =require('../src/index.css')
 export default class Client extends React.Component{   
     render(){
      

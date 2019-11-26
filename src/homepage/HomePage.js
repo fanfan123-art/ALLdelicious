@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Menu, Dropdown, Avatar, Badge } from 'antd';
+import { Layout, Menu, Dropdown} from 'antd';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import Home from './home/Home';
 import Chuan from './chuan/Chuan';
