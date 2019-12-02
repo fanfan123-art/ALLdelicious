@@ -4,10 +4,7 @@ import {
     Input,
     Tooltip,
     Icon,
-    Cascader,
     Select,
-    Row,
-    Col,
     Checkbox,
     Button,
     AutoComplete,
@@ -15,42 +12,6 @@ import {
 
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
-
-const residences = [
-    {
-        value: 'zhejiang',
-        label: 'Zhejiang',
-        children: [
-            {
-                value: 'hangzhou',
-                label: 'Hangzhou',
-                children: [
-                    {
-                        value: 'xihu',
-                        label: 'West Lake',
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        value: 'jiangsu',
-        label: 'Jiangsu',
-        children: [
-            {
-                value: 'nanjing',
-                label: 'Nanjing',
-                children: [
-                    {
-                        value: 'zhonghuamen',
-                        label: 'Zhong Hua Men',
-                    },
-                ],
-            },
-        ],
-    },
-];
-
 var RegisterCss = require('./Register.css')
 class Register extends React.Component {
     state = {
@@ -133,9 +94,6 @@ class Register extends React.Component {
             </Select>,
         );
 
-        const websiteOptions = autoCompleteResult.map(website => (
-            <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-        ));
 
         return (
                 <div className={RegisterCss.background}>
@@ -203,43 +161,10 @@ class Register extends React.Component {
                                 rules: [{ required: true, message: '请输入您的昵称!', whitespace: true }],
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item label="住址">
-                            {getFieldDecorator('residence', {
-                                initialValue: ['zhejiang', 'hangzhou', 'xihu'],
-                                rules: [
-                                    { type: 'array', required: true, message: '请输入您的住址!' },
-                                ],
-                            })(<Cascader options={residences} />)}
-                        </Form.Item>
                         <Form.Item label="电话号码">
                             {getFieldDecorator('phone', {
                                 rules: [{ required: true, message: '请输入您的电话号码！' }],
                             })(<Input addonBefore={prefixSelector} style={{ width: '100%' }} />)}
-                        </Form.Item>
-                        <Form.Item label="Website">
-                            {getFieldDecorator('website', {
-                                rules: [{ required: true, message: 'Please input website!' }],
-                            })(
-                                <AutoComplete
-                                    dataSource={websiteOptions}
-                                    onChange={this.handleWebsiteChange}
-                                    placeholder="website"
-                                >
-                                    <Input />
-                                </AutoComplete>,
-                            )}
-                        </Form.Item>
-                        <Form.Item label="Captcha" extra="We must make sure that your are a human.">
-                            <Row gutter={8}>
-                                <Col span={12}>
-                                    {getFieldDecorator('captcha', {
-                                        rules: [{ required: true, message: 'Please input the captcha you got!' }],
-                                    })(<Input />)}
-                                </Col>
-                                <Col span={12}>
-                                    <Button>Get captcha</Button>
-                                </Col>
-                            </Row>
                         </Form.Item>
                         <Form.Item {...tailFormItemLayout}>
                             {getFieldDecorator('agreement', {
