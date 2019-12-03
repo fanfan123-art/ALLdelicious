@@ -1,17 +1,6 @@
 import React from 'react';
-import {
-    Form,
-    Input,
-    Tooltip,
-    Icon,
-    Select,
-    Checkbox,
-    Button,
-    AutoComplete,
-} from 'antd';
-
+import {Form,Input,Tooltip,Icon,Select,Checkbox,Button,AutoComplete,} from 'antd';
 const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
 var RegisterCss = require('./Register.css')
 class Register extends React.Component {
     state = {
@@ -97,13 +86,10 @@ class Register extends React.Component {
 
         return (
                 <div className={RegisterCss.background}>
-                <div className={RegisterCss.loginbg01}>
-                    <img src={require('../images/red.jpg')}></img>
-                </div>
                 <div className={RegisterCss.loginbg02}></div>
 
                 <div className={RegisterCss.head}>
-                    <p className={RegisterCss.font}>Delicious | 注册通行证</p>
+                    <p className={RegisterCss.font}>Delicious | 注 册 通 行 证</p>
                 </div>
                 <div className={RegisterCss.Register}>
                     <Form {...formItemLayout} onSubmit={this.handleSubmit} action="/Login.js">
@@ -150,7 +136,7 @@ class Register extends React.Component {
                         <Form.Item
                             label={
                                 <span>
-                                    Nickname&nbsp;
+                                    昵称
                 <Tooltip title="What do you want others to call you?">
                                         <Icon type="question-circle-o" />
                                     </Tooltip>
@@ -171,13 +157,13 @@ class Register extends React.Component {
                                 valuePropName: 'checked',
                             })(
                                 <Checkbox>
-                                    I have read the <a href="">agreement</a>
+                                    我已阅读并同意<a href="">《delicious官网协议》</a>
                                 </Checkbox>,
                             )}
                         </Form.Item>
                         <Form.Item {...tailFormItemLayout}>
                             <Button type="primary" htmlType="submit" >
-                                Register
+                                注册
                             </Button>
                         </Form.Item>
                     </Form>
