@@ -18,41 +18,38 @@ class Login extends React.Component {
     render() {
         const { getFieldDecorator } = this.props.form;
         return (
-            <div className={LoginCss.background}>
-                <div className={LoginCss.loginbg01}>
-                    <img src={require('../images/red.jpg')} className={LoginCss.img}></img>
-                </div>
-                <div className={LoginCss.loginbg02}></div>
+            <div className={LoginCss.loginwindow}>
+                <div className={LoginCss.loginwindow01}></div>
                 {/* 背景 */}
-                <div className={LoginCss.logobg}>
+                <div className={LoginCss.headerbg}>
                     <p className={LoginCss.font}>Delicious  |  通行证</p>
                 </div>
-                <div className={LoginCss.Login02}>
+                <div className={LoginCss.Loginbg}>
                     <div className={LoginCss.enter}>
                         <p className={LoginCss.font04}>登  录</p>
                     </div>
-                    {/* 登录抬头 */}
+                    {/* 头部 */}
                     <div className={LoginCss.Input}>
                         <Form onSubmit={this.handleSubmit} className={LoginCss.form}>
                             <Form.Item>
                                 {getFieldDecorator('username', {
-                                    rules: [{ required: true, message: 'Please input your username!' }],
+                                    rules: [{ required: true, message: '请输入你的手机号/邮箱!' }],
                                 })(
                                     <Input
                                         prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                        placeholder="Username"
+                                        placeholder="手机号/邮箱"
                                         size="large"
                                     />,
                                 )}
                             </Form.Item>
                             <Form.Item>
                                 {getFieldDecorator('password', {
-                                    rules: [{ required: true, message: 'Please input your Password!' }],
+                                    rules: [{ required: true, message: '请输入密码！' }],
                                 })(
                                     <Input
                                         prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                         type="password"
-                                        placeholder="Password"
+                                        placeholder="密码"
                                         size="large"
                                     />,
                                 )}
@@ -61,14 +58,10 @@ class Login extends React.Component {
                                 {getFieldDecorator('remember', {
                                     valuePropName: 'checked',
                                     initialValue: true,
-                                })(<Checkbox>Remember me</Checkbox>)}
-                                <a className={LoginCss.forgot} href="">
-                                    Forgot password
-                                </a>
-                                <Button type="primary" htmlType="submit" className={LoginCss.button} size="large">
-                                    Log in
-                                </Button>
-                                Or <Link to="/Register">register now!</Link>
+                                })(<Checkbox>记住密码</Checkbox>)}
+                                <a className={LoginCss.forgot} href="">忘记密码</a>
+                                <Button type="primary" htmlType="submit" className={LoginCss.button} size="large">登 录</Button>
+                                <Link to="/Register">注册</Link>
                             </Form.Item>
                         </Form>
                     </div>

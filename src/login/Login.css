@@ -1,49 +1,39 @@
-.background{
+.loginwindow{
     width: 100%;
-    height: 1000px;
-    position: relative;
+    height: 900px;
+    background-image: url('../images/loginbg.jpg');
+    background-size: 100% 900PX;
 }
-.loginbg01{
+.loginwindow01{
     width: 100%;
-    height: 1000px;
+    height: 900px;
     position: absolute;
-}
-.loginbg02{
-    width: 100%;
-    height: 1000px;
-    position: absolute;
-    background: rgba(0, 0, 0, 0.514)}
-.img{
-    width: 100%;
-    height: 1000px;
-}
-.logobg{
+    background: rgba(0, 0, 0, 0.384)}
+.headerbg{
     width: 100%;
     height: 68px;
     position: absolute;
-    background-color: rgba(243, 243, 243, 0); 
-    font-family: "正楷";
-    font-size: 25px;
-    color: white;
     display: flex;
     align-content: center;
 }
 .font{
+    font-family: "正楷";
+    font-size: 30px;
+    color: white;
     margin:21px 0 0 250px
 }
-.Login02{
+.Loginbg{
     width: 30%;
-    height: 700px;
-    background-color: rgb(255, 255, 255);
+    height: 600px;
     position: absolute;
-    margin: 150px 35%;
+    margin: 200px 35% 0;
     border-radius: 1%;
 }
 .enter{
     width: 90%;
     height: 80px;
     margin: 0 5%;
-    border-bottom: 2.5px solid rgba(0,0,0,.137); 
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.678); 
     display: flex;
     align-self: center;
    
@@ -51,7 +41,7 @@
 .font04{
     font-size: 50px;
     font-family:  '行楷';
-    color: rgba(0, 0, 0, 0.137) ;
+    color: rgb(255, 255, 255) ;
     margin: auto;  
 }
 .Input{
