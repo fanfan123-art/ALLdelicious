@@ -1,22 +1,44 @@
-img{
-    width: 100%;
-    height: 100%;
+ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.wrap {
+	position: relative;
+	width: 100%;
+	height: 930px;
+	margin: auto;
+	background-image: url(../img/02.jpg);
+	background-size: 100% 930px;
+}
+.content01 {
+	position: absolute;
+	width: 100%;
+	height: 930px;
+}
+.content01 div{
+	position: absolute;
+	background-size: 100% 100%;
+	cursor: pointer;
+	background-color: rgba(255, 235, 205, 0.459);
+}
+.wrap a {
+	position: absolute;
+	display: none;
+	z-index: 2;
+	top: 50%;
+	width: 60px;
+	height: 60px;
+	margin-top: -30px;
+	font: 36px/60px "宋体";
+	text-align: center;
+	text-decoration: none;
+	transition: background 1s ease;
 }
 
-.menufone {
-    overflow-x: hidden;
-    overflow-y: scroll;
+.prev {
+	left: 30px;
 }
-.menufone::-webkit-scrollbar {
-    display: none;
-}
-p{
-    font-family: '行楷';
-    font-size: 13px;
-}
-.biaopian{
-    width: 50px;
-    height: 50px;
-    margin-left: 20px;
-    float: left;
+.next {
+	right: 30px;
 }

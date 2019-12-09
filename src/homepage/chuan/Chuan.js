@@ -1,215 +1,137 @@
-import React from "react";
+import React from 'react';
 import { Layout } from 'antd';
 const { Content } = Layout;
+
 
 var ChuanCss = require('../chuan/Chuan.css');
 export default class Chuan extends React.Component {
     render() {
+        window.onload = function () {
+            var divArr =  document.getElementById('div');
+            var size = [
+                { "top": 150, "left": 0, "width": 650, "height": 600, "zIndex": 1, "opacity": 0 },
+                { "top": 150, "left": 0, "width": 650, "height": 600, "zIndex": 2, "opacity": 40 },
+                { "top": 75, "left": 120, "width": 800, "height": 750, "zIndex": 3, "opacity": 70 },
+                { "top": 0, "left": 250, "width": 1400, "height": 930, "zIndex": 4, "opacity": 100 },
+                { "top": 75, "left":970, "width": 800, "height": 750, "zIndex": 3, "opacity": 70 },
+                { "top": 150, "left": 1250, "width": 650, "height": 600, "zIndex": 2, "opacity": 40 },
+                { "top": 150, "left": 1250, "width":650, "height": 600, "zIndex": 1, "opacity": 0 }
+               
+            ];
+            var divSum = divArr.length;
+            var wrap = document.getElementById('wrap');
+            var cont = wrap.firstElementChild || wrap.firstChild;
+            var btnArr = wrap.getElementsByTagName('a');
+            var falg = true;
+            var speed = 7000;
+            wrap.onmouseover = function () {
+                for (var i = 0; i < btnArr.length; i++) {
+                    btnArr[i].style.display = 'block';
+                }
+                clearInterval(wrap.timer);
+            }
+            wrap.onmouseout = function () {
+                for (var i = 0; i < btnArr.length; i++) {
+                    btnArr[i].style.display = 'none';
+                }
+                wrap.timer = setInterval(function () {
+                    move(true);
+                }, speed);
+            }
+            for (var i = 0; i < divSum; i++) {
+                var lis = document.createElement('div');
+                lis.style.div= 'url(' + divArr[i].path + ')';
+                cont.appendChild(lis);
+            }
+            var liArr = cont.children;
+            move();
+            wrap.timer = setInterval(function () {
+                move(true);
+            }, speed);
+            btnArr[1].onclick = function () {
+                if (falg) {
+                    move(true);
+                }
+            }
+            btnArr[0].onclick = function () {
+                if (falg) {
+                    move(false);
+                }
+            }
+            function move(bool) {
+                if (bool != undefined) {
+                    if (bool) {
+                        size.unshift(size.pop());
+                    } else {
+                        size.push(size.shift());
+                    }
+                }
+                for (var i = 0; i < liArr.length; i++) {
+                    animate(liArr[i], size[i], function () {
+                        falg = true;
+                    });
+                }
+            }
+        }
+        function getStyle(obj, attr) {
+            return obj.currentStyle ? obj.currentStyle[attr] : window.getComputedStyle(obj, null)[attr];
+        }
+
+        function animate(obj, json, fn) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                var bool = true;
+                for (var k in json) {
+                    var leader;
+                    if (k == 'opacity') {
+                        if (getStyle(obj, k) == undefined) {
+                            leader = 100;
+                        } else {
+                            leader = parseInt(getStyle(obj, k) * 100);
+                        }
+                    } else {
+                        leader = parseInt(getStyle(obj, k)) || 0;
+                    }
+                    var step = (json[k] - leader) / 10;
+                    step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                    leader = leader + step;
+                    if (k == 'zIndex') {
+                        obj.style[k] = json[k];
+                    } else if (k == 'opacity') {
+                        obj.style[k] = leader / 100;
+                        obj.style.filter = 'alpha(opacity=' + leader + ')';
+                    } else {
+                        obj.style[k] = leader + 'px';
+                    }
+                    if (json[k] != leader) {
+                        bool = false;
+                    }
+                }
+                if (bool) {
+                    clearInterval(obj.timer);
+                    if (fn) {
+                        fn();
+                    }
+                }
+            }, 10);
+        }
+
         return (
-            <div>
-                <Content style={{ marginTop: 64 }}>
-                    <div style={{ width: '95%', background: '#fff', minHeight: 800, marginLeft: '2.5%', marginTop: "50px" }}>
-                        <div style={{ width: "100%", height: "50px" }}>
-                            <img src={require('../img/chuan.png')} className={ChuanCss.biaopian}></img>
-                            <h1 style={{ marginLeft: '100px', lineHeight: '50px' }}> 川菜</h1>
-                        </div>
-                        <div style={{ width: "23%", marginLeft: "20px", marginTop: "10px", height: "400px", display: 'inline-block', float: "left" }}>
-                            <div style={{ width: "100%", height: "60%" }}>
-                                <img src={require('../img/泡椒凤爪.jpg')}></img>
-                            </div>
-                            <div style={{ width: "100%", height: "39%", marginTop: "5px" }} className={ChuanCss.menufone} >
-                                <h3>泡椒凤爪</h3>
-                                <h5>健康功效：</h5>
-                                <p>姜:降逆止呕、化痰止咳、散寒解表</p>
-                                <p>芹菜:利尿消肿</p>
-                                <p>胡萝卜:增强免疫力、护眼明目、抗癌防癌</p>
-                                <h5>原料:</h5>
-                                <p>质量上好的鸡爪一斤、柠檬半个、 洋葱半个、 芹菜三根、野山椒(即小米椒)两瓶、鲜花椒、桂皮、八角、胡椒粉、大蒜、老姜，其它蔬菜(胡萝卜、莴笋段等清脆的蔬菜均可)</p>
-                                <h5>腌制工具:</h5>
-                                <p>玻璃泡菜坛</p>
-                                <h5>做法：</h5>
-                                <p>1、把柠檬切片，洋葱切片，芹菜茎用刀拍破;</p>
-                                <p>2、老姜、大蒜拍破，花椒、桂皮、八角洗干净晾干，野山椒剪碎，放入容器中;</p>
-                                <p>3、凤爪洗净，用水煮断生(各地风味不同，绵竹清道做法则是将鸡爪煮致较软，去骨，切忌不可煮太久以致成绵软过烂)，煮好后捞出，用清水洗去浮末，切成两块到三块，晾干;</p>
-                                <p>4、晾干的凤爪放入坛中，将拍好的柠檬、洋葱、芹菜覆盖其上;</p>
-                                <p>5、将开水盛在大碗中，冷却后加入大蒜、泡红辣椒、野山椒、姜片、花椒;</p>
-                                <p>6、取老坛泡菜水(重量和开水等量)，倒入水中；</p>
-                                <p>7、晾干的凤爪、将拍好的柠檬、洋葱、芹菜一通放入玻璃大碗中，浸泡30分钟以上。</p>
-                            </div>
-                        </div>
-                        <div style={{ width: "23%", marginLeft: "20px", marginTop: "10px", height: "400px", display: 'inline-block' }}>
-                            <div style={{ width: "100%", height: "60%" }}>
-                                <img src={require('../img/辣子鸡.jpg')}></img>
-                            </div>
-                            <div style={{ width: "100%", height: "39%", marginTop: "5px" }} className={ChuanCss.menufone} >
-                                <h3>辣子鸡</h3>
-                                <h5>健康功效：</h5>
-                                <p>姜:降逆止呕、化痰止咳、散寒解表</p>
-                                <p>料酒:低蛋白质</p>
-                                <h5>原料：</h5>
-                                <p>整鸡一只或鸡腿一盒， 花椒和干辣椒(1:4)，葱，熟芝麻，盐，味精，料酒，食用油，姜，蒜， 白糖</p>
-                                <h5>做法：</h5>
-                                <p>1、将鸡切成小块放盐和料酒拌匀后放入8成热的油锅中炸至外表变干成深黄色后捞起待用。干辣椒和葱切成3厘米长的段，姜蒜切片。</p>
-                                <p>2、锅里烧油至7层热, 倒入姜蒜炒出香味后倒入干辣椒和花椒，翻炒至气味开始呛鼻， 油变黄后倒入炸好的鸡块，炒至鸡块均匀地分布在辣椒中后撒入葱段，味精，白糖，熟芝麻，炒匀后起锅即可。</p>
-                                <h5>注意：</h5>
-                                <p>1、辣椒和花椒可以随自己的口味添加, 不过为了原汁原味的体现这道菜的特色，做好的成品最好是辣椒能全部把鸡盖住， 而不是鸡块中零零星星出现几个辣椒和花椒。</p>
-                                <p>2、炸鸡前往鸡肉里撒盐， 一定要撒足， 如果炒鸡的时候再加盐，盐味是进不了鸡肉的， 因为鸡肉的外壳已经被炸干，质地比较紧密，盐只能附着在鸡肉的表面，影响味道。</p>
-                                <p>3、炸鸡用的油一定要烧得很热， 否则鸡肉下去很长时间外表都不会炸干的，就算等了半天炸干了， 那就真的是干了， 一团死肉，很难吃，完全没口感可言。所以火一定要大，外面炸脆了，里面还相对较嫩。</p>
-                            </div>
-                        </div>
-                        <div style={{ width: "23%", marginLeft: "20px", marginTop: "10px", height: "400px", display: 'inline-block' }}>
-                            <div style={{ width: "100%", height: "60%" }}>
-                                <img src={require('../img/灯影牛肉.jpg')}></img>
-                            </div>
-                            <div style={{ width: "100%", height: "39%", marginTop: "5px" }} className={ChuanCss.menufone} >
-                                <h3>灯影牛肉</h3>
-                                <h5>健康功效：</h5>
-                                <p>牛肉富含肌氨酸:牛肉中的肌氨酸含量比任何其它食品都高，这使它对增长肌肉、增强力量特别有效。在进行训练的头几秒里，肌氨酸是肌肉的燃料之源。</p>
-                                <h5>原料：</h5>
-                                <p>黄牛肉500克、白糖25克、花椒粉15克、辣椒粉25克、绍酒100克、精盐10克、五香粉、味精1克、姜15克、芝麻油10克、熟菜油500克(实耗150克)。</p>
-                                <h5>做法：</h5>
-                                <p>1、选用牛后腿上的腱子肉，去除浮皮保持洁净(勿用清水洗)，切去边角，片成大薄片。将牛肉片放在案板上铺平面理直，均匀地撒上炒干水份的盐，裹成圆筒形，晾至牛肉呈鲜红色(夏天约十四小时左右，冬天三、四天)。</p>
-                                <p>2、将晾干的牛肉片放在烘炉内，平铺在钢丝架上，用木炭火烘约十五分钟，至牛肉片干结。然后上笼蒸约三十分钟取出，切成4厘米长、2厘米宽的小片，再上笼蒸约一小时半取出。</p>
-                                <p>3、炒锅烧热，下菜油至七成热，放姜片炸出香味、捞出，待油温降至三成热时，将锅移置小火灶上，放入牛肉片慢慢炸透，滗去约三分之一的油，烹入绍酒拌匀，再加辣椒和花椒粉、白糖、味精、五香粉，颠翻均匀，起锅晾凉淋上芝麻油即成。</p>
-                            </div>
-                        </div>
-                        <div style={{ width: "23%", marginLeft: "20px", marginTop: "10px", marginTop: "10px", height: "400px", display: 'inline-block' }}>
-                            <div style={{ width: "100%", height: "60%" }}>
-                                <img src={require('../img/口水鸡.jpg')}></img>
-                            </div>
-                            <div style={{ width: "100%", height: "39%", marginTop: "5px" }} className={ChuanCss.menufone} >
-                                <h3>口水鸡</h3>
-                                <h5>健康功效：</h5>
-                                <p>1.鸡肉中蛋白质的含量较高，氨基酸种类多，而且消化率高，很容易被人体吸收利用，有增强体力、强壮身体的作用。</p>
-                                <p>2.鸡肉含有对人体生长发育有重要作用的磷脂类，是中国人膳食结构中脂肪和磷脂的重要来源之一。</p>
-                                <p>3.鸡肉对营养不良、畏寒怕冷、乏力疲劳、月经不调、贫血、虚弱等症有很好的食疗作用。</p>
-                                <h5>原料：</h5>
-                                <p>鸡适量、葱、姜、蒜、料酒、辣椒粉、酱油、盐、糖、醋</p>
-                                <h5>做法：</h5>
-                                <p>1. 鸡洗净，斩成块。</p>
-                                <p>2. 在水即将烧开前，把葱段、姜片、料酒都加到锅里。</p>
-                                <p>3. 水开后放入鸡煮10分钟。</p>
-                                <p>4. 煮好的鸡立刻放到凉水里，最好是冰水里激一下。</p>
-                                <p>5. 起锅，倒入油，待6成热时，放入葱姜蒜末，爆炒出香味，关火，冲入辣椒粉中，沉淀后沥出的油就是红油了。</p>
-                                <p>6. 将鸡肉从冰水中取出沥干，切成小块，放入盘中。</p>
-                                <p>7. 将酱油、盐、糖、醋混合两勺红油，搅拌均匀后，淋在鸡肉上面，即可</p>
-                                <h5>注意：</h5>
-                                <p>高血压、高血脂、胆囊炎患者忌食</p>
-                                <h5>食谱相克：</h5>
-                                <p>鸡肉---菊花相克，食则死亡。解救:细辛一钱，川莲五分水煎服。</p>
-                                <p>鸡肉---鲤鱼相克:性味不反但功能相乘。鸡肉---芥末相克:两者共食，恐助火热，无益于健康。</p>
-                                <p>鸡肉---菊花相克:同食会中毒。</p>
-                                <p>鸡肉---狗肾相克:会引起痢疾。</p>
-                            </div>
-                        </div>
-                        <div style={{ width: "23%", marginLeft: "20px", marginTop: "10px", height: "400px", display: 'inline-block' }}>
-                            <div style={{ width: "100%", height: "60%" }}>
-                                <img src={require('../img/火锅.jpg')}></img>
-                            </div>
-                            <div style={{ width: "100%", height: "39%", marginTop: "5px" }} className={ChuanCss.menufone} >
-                                <h3>火锅</h3>
-                                <h5>健康功效：</h5>
-                                <p>对于治感冒有一定的疗效，可祛风湿，特别是含营养较高的食品。如:鱼头、甲鱼等</p>
-                                <p>吃药膳火锅，对保健强身，辅助治疗某些疾病也有一定的作用。</p>
-                                <h5>原料：</h5>
-                                <p>四川豆瓣酱3汤匙、牛油100克、色拉油100克、干辣椒100克、花椒50克、白糖3汤匙、冰糖15克、老姜1小块、蒜头6瓣、北京葱2段、白酒2汤匙、骨头汤1罐、陈皮1块、草果2枚、小茴香15克、八角3粒、山奈1 粒、桂皮1根、香叶3片、丁香3粒、味精1茶匙、盐2茶匙、白胡椒粉1/2茶匙、生抽2汤匙。</p>
-                                <h5>做法：</h5>
-                                <p>1、锅内倒入色拉油烧热后倒入干辣椒和花椒炒出香味，随后再捞出备用，将白糖倒入油锅内小火炒溶后放入拍扁的葱段、姜块和蒜头。</p>
-                                <p>2、待葱蒜炒至色微黄后放入所有的香料一起翻炒，然后再倒入四川豆瓣酱炒匀，这时倒入白酒和生抽以及牛油合炒。</p>
-                                <p>3、最后倒入整罐排骨汤，放入冰糖，再将之前炸过的辣椒和花椒倒回锅内即成为火锅底料。</p>
-                                <h5>注意:</h5>
-                                <p>1.孕妇怀孕期间可能会出现呕吐反胃现象，因此胃部的消化能力自然降低。吃火锅时，准妈妈若胃口不佳，应减慢进食速度及减少进食分量，以免食后消化不了，引致不适。</p>
-                                <p>2.吃火锅多是涮肉，而肉类常感染弓形虫。羊群中弓形虫感染率约60%，猪约20%，牛为14%。弓形虫常隐匿在这类受感染的动物肌肉中，火锅的短时间加温并不能将其消灭，孕妇进食后，会导致流产、死胎或畸胎。</p>
-                            </div>
-                        </div>
-                        <div style={{ width: "23%", marginLeft: "20px", marginTop: "10px", height: "400px", display: 'inline-block' }}>
-                            <div style={{ width: "100%", height: "60%" }}>
-                                <img src={require('../img/水煮肉片.jpg')}></img>
-                            </div>
-                            <div style={{ width: "100%", height: "39%", marginTop: "5px" }} className={ChuanCss.menufone} >
-                                <h3>水煮肉片</h3>
-                                <h5>健康功效：</h5>
-                                <p>猪里脊肉：猪肉含有丰富的优质蛋白质和必需的脂肪酸，并提供血红素（有机铁）和促进铁吸收的半胱氨酸，能改善缺铁性贫血；具有补肾养血滋阴润燥的功效；猪里脊肉含有丰富的优质蛋白，脂肪、胆固醇含量相对较少，一般人群都可食用。</p>
-                                <p>鸡蛋清：鸡蛋清富含蛋白质和人体必需的8种氨基酸和少量醋酸，可以增强皮肤的润滑作用，保护皮肤的微酸性，以防细菌感染；此外，鸡蛋清还具有清热解毒作用；我国中医还认为，鸡蛋清性微寒而气清，能易经补气，润肺利咽，清热解毒，有助于延缓衰老。</p>
-                                <p>白菜：大白菜是现今餐桌上必不可少的一道家常美食，大白菜具有较高的营养价值，含有丰富的多种维生素和矿物质，特别是维C和钙、膳食纤维的含量非常丰富。</p>
-                                <p>对于护肤、养颜、防止女性乳腺癌、润肠排毒、促进人体对动物蛋白的吸收等有极大功效。我国中医还认为大白菜能养胃生津、除烦解渴、利尿通便、清热解毒。多食大白菜，还能预防和治疗便秘，预防痔疮及结肠癌等。</p>
-                                <h5>原料：</h5>
-                                <p>主料：猪里脊肉、蔬菜(白菜）、鸡蛋、淀粉、新鲜辣椒</p>
-                                <p>辅料：泡椒、干辣椒段、花椒、豆瓣酱、辣椒油、老抽、蒜瓣</p>
-                                <h5>做法：</h5>
-                                <p>1. 将猪里脊肉切片，鸡蛋清和淀粉、盐、味精、料酒调匀成糊，涂抹在肉片上长；</p>
-                                <p>2. 白菜叶、姜洗净切片，葱白切段；</p>
-                                <p>3. 将35克植物油入锅，烧热，倒入花椒、干辣椒慢火炸，待辣椒呈金黄色捞出；</p>
-                                <p>4. 然后，将辣椒、花椒切成细末；</p>
-                                <p>5. 用锅中油爆炒豆瓣辣酱，然后将白菜叶、葱白、姜、肉汤、酱油、胡椒粉、料酒、鸡精等调料放入，略搅几下，使之调匀；</p>
-                                <p>6. 随即放入肉片，再炖，肉片熟后，将肉片盛起，将剁碎的干辣椒、花椒末撒上；</p>
-                                <p>7. 用剩余的植物油烧开，淋在肉片上，使热油把干辣椒、花椒粉、肉片再炸一下，即可使麻、辣、浓香四溢。</p>
-                                <h5>注意：</h5>
-                                <p>阴虚火旺、皮肤病、慢性炎症、痔疮不宜。</p>
-                            </div>
-                        </div>
-                        <div style={{ width: "23%", marginLeft: "20px", marginTop: "10px", height: "400px", display: 'inline-block' }}>
-                            <div style={{ width: "100%", height: "60%" }}>
-                                <img src={require('../img/水煮鱼.jpg')}></img>
-                            </div>
-                            <div style={{ width: "100%", height: "39%", marginTop: "5px" }} className={ChuanCss.menufone} >
-                                <h3>水煮鱼</h3>
-                                <h5>健康功效：</h5>
-                                <p>营养草鱼：草鱼含有丰富的不饱和脂肪酸，对血液循环有利，是心血管水煮鱼病人的良好食物；草鱼含有丰富的硒元素，经常食用有抗衰老、养颜的功效，而且对肿瘤也有一定的防治作用；并具有暖胃和中、平肝祛风、治痹、截疟、益肠明眼目之功效，主治虚劳、风虚头痛、肝阳上亢、高血压、头痛、久疟。</p>
-                                <p>黄豆芽：黄豆芽含有丰富的维生素，春天多吃些黄豆芽可以有效地防治维生素B2缺乏症。豆芽中所含的维生素E能保护皮肤和毛细血管，防止动脉硬化，防治老年高血压。另外因为黄豆芽含有维C，是美容食品。常吃黄豆芽能营养毛发，使头发保持乌黑光亮，对面部雀斑有较好的淡化效果。吃黄豆芽对青少年生长发育、预防贫血等大有好处，常吃的黄豆芽还有健脑、抗疲劳、抗癌，防止牙龈出血、心血管硬化及低胆固醇等功效。</p>
-                                <h5>原料：</h5>
-                                <p>草鱼一条、黄豆芽（约半斤）</p>
-                                <p>辅料：干辣椒、花椒、姜、蒜、葱、油、盐、味精、干淀粉、料酒、豆瓣(或剁椒)、生蛋清、胡椒粉。</p>
-                                <h5>做法：</h5>
-                                <p>1、将鱼杀好洗净，剁下头尾，片成鱼片，并把剩下的鱼水煮鱼排剁成几块。将鱼片用少许盐、料酒、生粉和一个蛋白抓匀，腌15分钟（头尾及鱼排另装盘，用同样的方法腌制) ；</p>
-                                <p>2、烧开一小锅水，将豆芽洗净后，放入开水中烫一下，捞入大盆中，按个人口味撒一点盐，备用；</p>
-                                <p>3、在干净的炒锅中加平常炒菜三倍的油，油热后，放入三大匙豆瓣(或剁炒)爆香，加姜、蒜、葱、花椒粒、辣椒粉及干红辣椒中小火煸炒。出味后加入头尾及鱼排，转大火，翻匀，加料酒和酱油、胡椒粉、白糖适量，继续翻炒片刻后，加一些热水，同时放盐和味精调味。待水开，保持大火，一片片将鱼片放入，用筷子拨散，3~5分钟即可关火。把煮好的鱼及全部汤汁倒入刚才盛豆芽的大盆中；</p>
-                                <p>4、另取一干净锅，倒入半斤油(具体油量要看准备的容器大小，以倒入大盆中时，把鱼和豆芽全部淹没为准，可以目测一下)。待油热后，关火先晾一下。然后加入多多花椒及干辣椒，用小火慢慢炒出花椒和辣椒的香味。注意火不可太大，以免炒糊；</p>
-                                <p>5、辣椒颜色快变时，立即关火，把锅中的油及花椒辣椒一起倒入盛鱼的大盆中。</p>
-                                <h5>小贴士：</h5>
-                                <p>1、煮鱼的水量不宜多，以鱼片放入后，刚刚被水淹过即可。煮好倒入盆中后，有部分鱼片会露在外边。</p>
-                                <p>2、煮鱼之前把部分花椒和辣椒先炒过，在煮的时候，就可以充分浸出辣椒中的红色素，使油色红亮。</p>
-                                <p>3、鱼肉的味道是靠前面腌出来的，所以不能象一般做法考虑后面可以再次调味的，要腌透。可以稍微放点鸡精。</p>
-                                <p>4、千万不能将花椒什么的煸糊，因为是靠油来炸的所以千万不要用大火，要不然全都是焦乎乎的影响胃口，也不利健康。</p>
-                                <p>5、具体炒花椒和辣椒的油量要看准备的容器大小，以倒入大盆中时，把鱼和豆芽全部淹没为准，可以目测一下。</p>
-                                <p>6、鱼肉吃完的，可以把汤汁重新倒回锅内，下豆腐或粉带或魔芋等等，就是水煮鱼火锅了。或者干脆一开始就把煮好的鱼放入电火锅中，吃完鱼后，直接开火就行了</p>
-                                <h5>注意：</h5>
-                                <p>1.别过量食用水煮鱼，要注意适可而止。</p>
-                                <p>2.水煮鱼是高蛋白、高热量的食物，但要注意搭配蔬菜、水果，免得造成维生素缺乏。</p>
-                                <p>3.因吃水煮鱼太辣造成第二天排便不畅，这时最好多喝茶，如果有萝卜可以吃一些来通气。</p>
-                                <p>4.吃完水煮鱼后易嗓子疼，上火，生痰、生热。应该配合菊花茶化解一下，同时在冬季如果常吃水煮鱼，每天至少喝1000毫升的水来缓解一下火气。</p>
-                                <h5>食谱相克：</h5>
-                                <p>黄豆芽：豆芽不宜与猪肝同食</p>
-                            </div>
-                        </div>
-                        <div style={{ width: "23%", marginLeft: "20px", marginTop: "10px", height: "400px", display: 'inline-block' }}>
-                            <div style={{ width: "100%", height: "60%" }}>
-                                <img src={require('../img/夫妻肺片.jpg')}></img>
-                            </div>
-                            <div style={{ width: "100%", height: "39%", marginTop: "5px" }} className={ChuanCss.menufone} >
-                                <h3>夫妻肺片</h3>
-                                <h5>健康功效：</h5>
-                                <p>夫妻肺片，温补脾胃、温补肝肾、补血温经、保护胃黏膜、补肝明目、增加高温抗病能力、促进人体的生长发育。</p>
-                                <p>牛肚含蛋白质、脂肪、钙、磷、铁、硫胺素、核黄素、尼克酸等，适宜于病后虚羸、气血不足、营养不良、脾胃薄弱之人。</p>
-                                <h5>原料：</h5>
-                                <p>原料配料：鲜牛肉、牛杂(肚、心、舌、头皮等)、老卤水各500克，油酥花生米、芝麻面100克。</p>
-                                <p>调料选用：酱油各150克、辣椒油、花椒面25克、八角4克 、味精、花椒、肉桂各5克、精盐125克、白酒50克。</p>
-                                <h5>做法：</h5>
-                                <p>1、将牛肉、牛杂洗净。牛肉切成重约500克的大块，与牛杂一起放锅内，加入清水(以淹过牛肉为度)，用旺火烧沸，并不断撇去浮沫，见肉呈白红色，倒去汤水，牛肉、牛杂仍放锅内，倒入老卤水，放入香料包(将花椒、肉桂、八角用布 包扎好)、白酒和精盐，再加清水400克左右，旺火烧沸约30分钟后，改用小火继续烧1.5小时，煮至牛肉、牛杂酥而不烂，捞出晾凉。</p>
-                                <p>2、卤汁用旺火烧 沸，约10分钟后，取碗一只，舀入卤水250克，加入味精、辣椒油、酱油、花椒面调成味汁。</p>
-                                <p>3、将晾凉的牛肉、牛杂分别切成4厘米长、2厘米宽、0.2厘米厚的片，混合在一起，淋入卤汁 拌匀，分盛若干盘，撒上油酥花生末和芝麻面即成</p>
-                                <h5>注意：</h5>
-                                <p>1.晚上不宜吃牛肉。晚上吃牛肉等富含铁的食物，会干扰肝脏生物钟，可能会导致血糖水平不正常。</p>
-                                <p>2.饮食要适量。凡有感染性疾病、肝病、肾病的人慎食牛肉；高胆固醇、高脂肪、老年人、儿童、消化力弱的人不宜多吃。</p>
-                                <h5>食谱相克：</h5>
-                                <p>1.不能和板栗一起吃。牛肉和板栗同食，可降低对人体有益的营养价值，故不相宜。</p>
-                                <p>2.不能和红糖同吃。红糖含有丰富的维生素C和维生素B，牛肉具有滋养脾胃、补中益气、化痰息风、强健筋骨、止渴止涎的功效。两者相克，一起食用会引起腹胀。</p>
-                            </div>
-                        </div>
-                        <div style={{width:"100px",height:"20px",marginLeft:"48%"}}>未完待续......</div>
-                    </div>
-                </Content>
-            </div >
+            <Content style={{ marginTop: 64 }}>
+            <div className={ChuanCss.wrap} id={'wrap'}>
+                <ul className={ChuanCss.content01}>
+                    <div id={'div'}>1</div>
+                    <div id={'div'}>2</div>
+                    <div id={'div'}>3</div>
+                    <div id={'div'}>4</div>
+                    <div id={'div'}>3</div>
+                    <div id={'div'}>2</div>
+                    <div id={'div'}>1</div>
+                </ul>
+                <a href="javascript:;" className={ChuanCss.prev}>&#60;</a>
+                <a href="javascript:;" className={ChuanCss.next}>&#62;</a>
+            </div>
+            </Content>
         )
     }
 }
