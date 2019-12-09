@@ -8,7 +8,7 @@
     width: 100%;
     height: 900px;
     position: absolute;
-    background: rgba(0, 0, 0, 0.384)}
+    background:rgba(255, 255, 255, 0.425);}
 .headerbg{
     width: 100%;
     height: 68px;
@@ -19,7 +19,7 @@
 .font{
     font-family: "正楷";
     font-size: 30px;
-    color: white;
+    color: rgb(0, 0, 0);
     margin:21px 0 0 250px
 }
 .Loginbg{
@@ -33,7 +33,7 @@
     width: 90%;
     height: 80px;
     margin: 0 5%;
-    border-bottom: 2px dashed rgba(255, 255, 255, 0.678); 
+    border-bottom: 2px dashed rgba(0, 0, 0, 0.678); 
     display: flex;
     align-self: center;
    
@@ -41,7 +41,7 @@
 .font04{
     font-size: 50px;
     font-family:  '行楷';
-    color: rgb(255, 255, 255) ;
+    color: rgb(0, 0, 0) ;
     margin: auto;  
 }
 .Input{

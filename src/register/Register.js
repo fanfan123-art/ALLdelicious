@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form,Input,Tooltip,Icon,Select,Checkbox,Button,AutoComplete,} from 'antd';
+import {Form,Input,Tooltip,Icon,Select,Checkbox,Button,} from 'antd';
 const { Option } = Select;
 var RegisterCss = require('./Register.css')
 class Register extends React.Component {
@@ -22,16 +22,16 @@ class Register extends React.Component {
         this.setState({ confirmDirty: this.state.confirmDirty || !!value });
     };
 
-    compareToFirstPassword = (rule, value, callback) => {
+    compareToFirstPassword = (_rule, value, callback) => {
         const { form } = this.props;
         if (value && value !== form.getFieldValue('password')) {
-            callback('Two passwords that you enter is inconsistent!');
+            callback('两次密码输入不一致');
         } else {
             callback();
         }
     };
 
-    validateToNextPassword = (rule, value, callback) => {
+    validateToNextPassword = (_rule, value, callback) => {
         const { form } = this.props;
         if (value && this.state.confirmDirty) {
             form.validateFields(['confirm'], { force: true });
@@ -50,7 +50,6 @@ class Register extends React.Component {
     };
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { autoCompleteResult } = this.state;
 
         const formItemLayout = {
             labelCol: {
@@ -92,7 +91,7 @@ class Register extends React.Component {
                     <p className={RegisterCss.font}>Delicious | 注 册 通 行 证</p>
                 </div>
                 <div className={RegisterCss.Register}>
-                    <Form {...formItemLayout} onSubmit={this.handleSubmit} action="/Login.js">
+                    <Form {...formItemLayout} onSubmit={this.handleSubmit} action="/Login.js" style={{fontStyle:"white"}}>
                         <Form.Item label="邮箱">
                             {getFieldDecorator('email', {
                                 rules: [
@@ -137,7 +136,7 @@ class Register extends React.Component {
                             label={
                                 <span>
                                     昵称
-                <Tooltip title="What do you want others to call you?">
+                <Tooltip title="你希望别人怎么称呼你?">
                                         <Icon type="question-circle-o" />
                                     </Tooltip>
                                 </span>
