@@ -9,7 +9,6 @@ class Login extends React.Component {
         let history = this.props.history;
         this.props.form.validateFields((err, values) => {
           if (!err) {
-            console.log('Received values of form: ', values);
             history.push('/HomePage');
           }
         });

@@ -6,10 +6,10 @@ ul {
 .wrap {
 	position: relative;
 	width: 100%;
-	height: 930px;
+	height: 940px;
 	margin: auto;
 	background-image: url(../img/02.jpg);
-	background-size: 100% 930px;
+	background-size: 100% 940px;
 }
 .content01 {
 	position: absolute;

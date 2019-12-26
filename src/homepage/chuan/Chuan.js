@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 const { Content } = Layout;
 
 
-var ChuanCss = require('../chuan/Chuan.css');
+var ChuanCss = require('./Chuan.css');
 export default class Chuan extends React.Component {
     render() {
         window.onload = function () {
