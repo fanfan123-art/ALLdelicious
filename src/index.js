@@ -16,9 +16,12 @@ import Su from './homepage/su/Su';
 import Xiang from './homepage/xiang/Xiang';
 import Yue from './homepage/yue/Yue';
 
+
 export default class Client extends React.Component{   
+
+
+
     render(){
-     
         return(
             <div>
                 <Router history={createBrowserHistory()}>

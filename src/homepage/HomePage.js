@@ -1,103 +1,86 @@
+
 import React from 'react';
-import { Carousel } from 'antd';
-import {Link,HashRouter as Router } from 'react-router-dom';
+import 'antd/dist/antd.css';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { Layout, Menu, Avatar, Dropdown } from 'antd';
+import Home from './home/Home';
+import Chuan from './chuan/Chuan';
+import Lu from './lu/Lu';
+import Zhe from './zhe/Zhe';
+import Xiang from './xiang/Xiang';
+import Min from './min/Min';
+import Yue from './yue/Yue';
+import Su from './su/Su';
+import Hui from './hui/Hui';
+import Information from './information/Information';
+import Statistics from './statistics/Statistics';
+import Data from './data/Data';
 
 
-var HomePageCss = require('../homepage/HomePage.css')
+const { Header, Footer, Content } = Layout;
+var HomeCss = require('./HomePage.css');
+const menu = (
+    <Menu>
+        <Menu.Item>
+            <Link  to="Iformation">
+                我的信息
+        </Link>
+        </Menu.Item>
+        <Menu.Item>
+            <Link  to="Statistics">
+                我的统计
+        </Link>
+        </Menu.Item>
+        <Menu.Item>
+            <Link  to="Data">
+                资料和账号
+        </Link>
+        </Menu.Item>
+    </Menu>
+);
 export default class HomePage extends React.Component {
+
     render() {
         return (
-            <Carousel autoplay>
-                <div className={HomePageCss.home}>
-
-                </div>
-                <div className={HomePageCss.chuan}>
-                    <div className={HomePageCss.font01}>
-                        <p>腌腊煸熏爆溜滑，甜酸咸苦香辣麻，
-                           东坡煨焖东坡肉，太白清蒸太白鸭，
-                           诗圣临厨烹蜀笋，文君下灶炒川虾，
-                           百馐百味百盘馔，一菜一格一品花。</p>
-                    </div>
-                    <div className={HomePageCss.logo01}>
-                    <Link to="/Chuan"><h1>川</h1></Link>
-                    </div>
-                </div>
-                <div className={HomePageCss.lu}>
-                    <div className={HomePageCss.font02}>
-                        <p>鲁菜香，豫菜香。<br/>香到德州乐乐房，<br/>文坛网海忙。<br/>
-                           思常常，乐常常，<br/>乐于为人慰断肠，<br/>姐妹情谊长。</p>
-                    </div>
-                    <div className={HomePageCss.logo02}>
-                        <Link to="/Lu"><h1>鲁</h1></Link>
-                    </div>
-                </div>
-                <div className={HomePageCss.yue}>
-                    <div className={HomePageCss.font01}>
-                        <p>
-                            羊城客汕大三元，饕餮敢为天下先。
-                            狸狗猫蛇烹作馔，鸭鸡雁雀制成筵。
-                            龟虾贝蟹坛中炖，笋果参菇釜中煎。
-                            妙手天工龙凤宴，乳猪裙翅醉神仙。
-                        </p>
-                    </div>
-                    <div className={HomePageCss.logo01}> 
-                        <Link to="/Yue"><h1>粤 </h1></Link>
-                    </div>
-                </div>
-                <div className={HomePageCss.hui}>
-                    <div className={HomePageCss.font02}>
-                        <p>安邦定国，<br/>品美味佳肴庆贺。
-                           徽商经济，<br/> 做珍馐天物犒劳。</p>
-                    </div>
-                    <div  className={HomePageCss.logo02}> 
-                        <Link to="/Hui"><h1>徽</h1></Link>
-                    </div>
-                </div>
-                <div className={HomePageCss.zhe}>
-                <div className={HomePageCss.font01}>
-                        <p>
-                            羊城客汕大三元，饕餮敢为天下先。
-                            狸狗猫蛇烹作馔，鸭鸡雁雀制成筵。
-                            龟虾贝蟹坛中炖，笋果参菇釜中煎。
-                            妙手天工龙凤宴，乳猪裙翅醉神仙。
-                        </p>
-                    </div>
-                    <div className={HomePageCss.logo01}> 
-                        <Link to="/Zhe"><h1>浙</h1></Link>
-                    </div>
-                </div>
-                <div className={HomePageCss.min}>
-                <div className={HomePageCss.font02}>
-                        <p>安邦定国，<br/>品美味佳肴庆贺。
-                           徽商经济，<br/> 做珍馐天物犒劳。</p>
-                    </div>
-                    <div  className={HomePageCss.logo02}> 
-                        <Link to="/Min"><h1>闽</h1></Link>
-                    </div>
-                </div>
-                <div className={HomePageCss.su}>
-                <div className={HomePageCss.font01}>
-                        <p>
-                            羊城客汕大三元，饕餮敢为天下先。
-                            狸狗猫蛇烹作馔，鸭鸡雁雀制成筵。
-                            龟虾贝蟹坛中炖，笋果参菇釜中煎。
-                            妙手天工龙凤宴，乳猪裙翅醉神仙。
-                        </p>
-                    </div>
-                    <div className={HomePageCss.logo01}> 
-                        <Link to="/Su"><h1> 苏</h1></Link>
-                    </div>
-                </div>
-                <div className={HomePageCss.xiang}>
-                <div className={HomePageCss.font02}>
-                        <p>安邦定国，<br/>品美味佳肴庆贺。
-                           徽商经济，<br/> 做珍馐天物犒劳。</p>
-                    </div>
-                    <div  className={HomePageCss.logo02}> 
-                        <Link to="/Xiang"><h1>湘</h1></Link>
-                    </div>
-                </div>
-            </Carousel>
+            <div className={HomeCss.codeboxdemo}>
+                <BrowserRouter>
+                    <Layout className={HomeCss.Layout}>
+                        <Header className={HomeCss.Header}>
+                            <div className={HomeCss.logo} />
+                            <Menu mode="horizontal" defaultSelectedKeys={['1']} style={{ lineHeight: '61px' }} className={HomeCss.Menu}>
+                                <Menu.Item key="1"><Link to="/Home">首 页</Link></Menu.Item>
+                                <Menu.Item key="2"><Link to="/Chuan">川 菜</Link></Menu.Item>
+                                <Menu.Item key="3"><Link to="/Lu">鲁 菜</Link></Menu.Item>
+                                <Menu.Item key="4"><Link to="/Zhe">浙 菜</Link></Menu.Item>
+                                <Menu.Item key="5"><Link to="/Xiang">湘 菜</Link></Menu.Item>
+                                <Menu.Item key="6"><Link to="/Min">闽 菜</Link></Menu.Item>
+                                <Menu.Item key="7"><Link to="/Yue">粤 菜</Link></Menu.Item>
+                                <Menu.Item key="8"><Link to="/Su">苏 菜</Link></Menu.Item>
+                                <Menu.Item key="9"><Link to="/Hui">徽 菜</Link></Menu.Item>
+                            </Menu>
+                            <Dropdown overlay={menu} className={HomeCss.User}>
+                                    <Avatar size={50} icon="user" style={{backgroundColor:'#edd70c'}}/>
+                            </Dropdown>
+                        </Header>
+                        <Content className={HomeCss.Content}>
+                            <Route path="/" exact component={Home}></Route>
+                            <Route path="/Home" component={Home}></Route>
+                            <Route path="/Chuan" component={Chuan}></Route>
+                            <Route path="/Lu" component={Lu}></Route>
+                            <Route path="/Zhe" component={Zhe}></Route>
+                            <Route path="/Xiang" component={Xiang}></Route>
+                            <Route path="/Min" component={Min}></Route>
+                            <Route path="/Yue" component={Yue}></Route>
+                            <Route path="/Su" component={Su}></Route>
+                            <Route path="/Hui" component={Hui}></Route>
+                            <Route path="/Information" component={Information}></Route>
+                            <Route path="/Statistics" component={Statistics}></Route>
+                            <Route path="/Data" component={Data}></Route>
+                        </Content>
+                        <Footer className={HomeCss.Footer}>创建于2019.12.29</Footer>
+                    </Layout>
+                </BrowserRouter>
+            </div>
         )
     }
 }
