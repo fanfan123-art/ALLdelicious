@@ -19,7 +19,7 @@ export default class HomePage extends React.Component {
                            百馐百味百盘馔，一菜一格一品花。</p>
                     </div>
                     <div className={HomePageCss.logo01}>
-                    <Router pash="/Chuan"><h1>川</h1></Router>
+                    <Link to="/Chuan"><h1>川</h1></Link>
                     </div>
                 </div>
                 <div className={HomePageCss.lu}>
