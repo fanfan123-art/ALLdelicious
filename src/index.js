@@ -7,6 +7,8 @@ import Register from './register/Register';
 import {HashRouter as Router , Route , Switch} from 'react-router-dom';
 import { createBrowserHistory } from "history";
 import HomePage from './homepage/HomePage';
+import Chuan from './homepage/chuan/Chuan'
+import Zhe from './homepage/zhe/Zhe';
 
 export default class Client extends React.Component{   
     render(){
@@ -19,6 +21,8 @@ export default class Client extends React.Component{
                     <Route path="/login" component={Login}></Route>
                     <HomePage path='/HomePage' component={HomePage}/> 
                     <Route path="/register" component={Register}></Route>
+                    <Route path="/chuan" component={Chuan}></Route>
+                    <Route path="/zhe" component={Zhe}></Route>
                 </Switch>
                 </Router>
             </div>

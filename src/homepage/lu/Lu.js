@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 const { Content } = Layout;
 
 var LuCss = require('../lu/Lu.css');
-export default class Chuan extends React.Component {
+export default class Lu extends React.Component {
     render() {
         return (
             <div>

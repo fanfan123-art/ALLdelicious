@@ -1,6 +1,7 @@
 import React from 'react';
 import { Carousel } from 'antd';
-import {Link} from 'react-router-dom';
+import {Link,HashRouter as Router } from 'react-router-dom';
+
 
 var HomePageCss = require('../homepage/HomePage.css')
 export default class HomePage extends React.Component {
@@ -18,7 +19,7 @@ export default class HomePage extends React.Component {
                            百馐百味百盘馔，一菜一格一品花。</p>
                     </div>
                     <div className={HomePageCss.logo01}>
-                        <Link to="/Chuan/"><div>川</div></Link>
+                    <Router pash="/Chuan"><h1>川</h1></Router>
                     </div>
                 </div>
                 <div className={HomePageCss.lu}>

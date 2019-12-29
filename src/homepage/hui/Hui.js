@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 const { Content } = Layout;
 
 var HuiCss = require('../hui/Hui.css');
-export default class Chuan extends React.Component {
+export default class Hui extends React.Component {
     render() {
         return (
             <div>

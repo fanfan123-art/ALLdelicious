@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout } from 'antd';
+
 const { Content } = Layout;
 
 
@@ -9,13 +10,13 @@ export default class Chuan extends React.Component {
         window.onload = function () {
             var divArr =  document.getElementById('div');
             var size = [
-                { "top": 150, "left": 0, "width": 650, "height": 600, "zIndex": 1, "opacity": 0 },
-                { "top": 150, "left": 0, "width": 650, "height": 600, "zIndex": 2, "opacity": 40 },
-                { "top": 75, "left": 120, "width": 800, "height": 750, "zIndex": 3, "opacity": 70 },
-                { "top": 0, "left": 250, "width": 1400, "height": 930, "zIndex": 4, "opacity": 100 },
-                { "top": 75, "left":970, "width": 800, "height": 750, "zIndex": 3, "opacity": 70 },
-                { "top": 150, "left": 1250, "width": 650, "height": 600, "zIndex": 2, "opacity": 40 },
-                { "top": 150, "left": 1250, "width":650, "height": 600, "zIndex": 1, "opacity": 0 }
+                { "top": 150, "left": 0, "width": 650, "height": 520, "zIndex": 1, "opacity": 0 },
+                { "top": 150, "left": 0, "width": 650, "height": 520, "zIndex": 2, "opacity": 40 },
+                { "top": 75, "left": 120, "width": 800, "height": 670, "zIndex": 3, "opacity": 70 },
+                { "top": 0, "left": 250, "width": 1400, "height": 850, "zIndex": 4, "opacity": 100 },
+                { "top": 75, "left":970, "width": 800, "height": 670, "zIndex": 3, "opacity": 70 },
+                { "top": 150, "left": 1250, "width": 650, "height": 520, "zIndex": 2, "opacity": 40 },
+                { "top": 150, "left": 1250, "width":650, "height": 520, "zIndex": 1, "opacity": 0 }
                
             ];
             var divSum = divArr.length;
@@ -117,6 +118,7 @@ export default class Chuan extends React.Component {
         }
 
         return (
+         
             <Content style={{ marginTop: 64 }}>
             <div className={ChuanCss.wrap} id={'wrap'}>
                 <ul className={ChuanCss.content01}>
@@ -132,6 +134,7 @@ export default class Chuan extends React.Component {
                 <a href="javascript:;" className={ChuanCss.next}>&#62;</a>
             </div>
             </Content>
+           
         )
     }
 }
