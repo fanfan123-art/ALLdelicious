@@ -13,30 +13,24 @@ import Yue from './yue/Yue';
 import Su from './su/Su';
 import Hui from './hui/Hui';
 import Information from './information/Information';
-import Statistics from './statistics/Statistics';
-import Data from './data/Data';
+import Number01 from './number/Number';
 
 
 const { Header, Footer, Content } = Layout;
 var HomeCss = require('./HomePage.css');
 const menu = (
     <Menu>
-        <Menu.Item>
-            <Link  to="Iformation">
-                我的信息
-        </Link>
-        </Menu.Item>
-        <Menu.Item>
-            <Link  to="Statistics">
-                我的统计
-        </Link>
-        </Menu.Item>
-        <Menu.Item>
-            <Link  to="Data">
-                资料和账号
-        </Link>
-        </Menu.Item>
-    </Menu>
+    <Menu.Item>
+        <Link to="Information">
+            我的资料
+    </Link>
+    </Menu.Item>
+    <Menu.Item>
+        <Link to="Number">
+            账号安全
+    </Link>
+    </Menu.Item>
+</Menu>
 );
 export default class HomePage extends React.Component {
 
@@ -74,8 +68,7 @@ export default class HomePage extends React.Component {
                             <Route path="/Su" component={Su}></Route>
                             <Route path="/Hui" component={Hui}></Route>
                             <Route path="/Information" component={Information}></Route>
-                            <Route path="/Statistics" component={Statistics}></Route>
-                            <Route path="/Data" component={Data}></Route>
+                                <Route path="/Number" component={Number01}></Route>
                         </Content>
                         <Footer className={HomeCss.Footer}>创建于2019.12.29</Footer>
                     </Layout>

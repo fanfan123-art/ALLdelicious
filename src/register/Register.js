@@ -1,8 +1,50 @@
 import React from 'react';
-import {Form,Input,Tooltip,Icon,Select,Checkbox,Button,} from 'antd';
+import {Form,Input,Tooltip,Icon,Select,Checkbox,Button,message} from 'antd';
 const { Option } = Select;
 var RegisterCss = require('./Register.css')
 class Register extends React.Component {
+    //双向数据绑定
+    constructor(props){
+        super(props);
+        this.state={}
+    }
+    changeValue=(e)=>{
+        this.setState({
+           [e.target.name]:e.target.value 
+        })
+    }
+    upload=()=>{
+        //xhr
+        var xhr= new XMLHttpRequest()
+        var data={
+            "email":this.state.email,
+            "username":this.state.username,
+            "password":this.state.password,
+            "number":this.state.number,
+        }
+        //open连接
+        xhr.open("post","/user/register")
+        //配置响应函数
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4){
+                if(xhr.status==200){
+                    var result=JSON.parse(xhr.responseText)
+                    if(result.state==2){
+                        message.info("用户名已存在！")
+                    }else if(result.state==1){
+                        message.info("注册成功！")
+                        this.props.history.push("/Homepage")
+                    }
+                    
+                }else{
+                    message.info(xhr.status)
+                }
+            }
+        }
+        //发送数据
+        xhr.setRequestHeader('content-type','application/JSON')
+        xhr.send(JSON.stringify(data))
+    }
     state = {
         confirmDirty: false,
         autoCompleteResult: [],
@@ -92,7 +134,7 @@ class Register extends React.Component {
                 </div>
                 <div className={RegisterCss.Register}>
                     <Form {...formItemLayout} onSubmit={this.handleSubmit} action="/Login.js" style={{fontStyle:"white"}}>
-                        <Form.Item label="邮箱">
+                        <Form.Item label="邮箱" value={this.state.email} name="email" onChange={e=>this.changeValue(e)}>
                             {getFieldDecorator('email', {
                                 rules: [
                                     {
@@ -106,7 +148,7 @@ class Register extends React.Component {
                                 ],
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item label="密码" hasFeedback>
+                        <Form.Item label="密码" hasFeedback value={this.state.password} name="password" onChange={e=>this.changeValue(e)}>
                             {getFieldDecorator('password', {
                                 rules: [
                                     {
@@ -119,7 +161,7 @@ class Register extends React.Component {
                                 ],
                             })(<Input.Password />)}
                         </Form.Item>
-                        <Form.Item label="再次输入密码" hasFeedback>
+                        <Form.Item label="再次输入密码" hasFeedback value={this.state.password} name="password" onChange={e=>this.changeValue(e)}>
                             {getFieldDecorator('confirm', {
                                 rules: [
                                     {
@@ -141,12 +183,12 @@ class Register extends React.Component {
                                     </Tooltip>
                                 </span>
                             }
-                        >
+                            value={this.state.username} name="username" onChange={e=>this.changeValue(e)}>
                             {getFieldDecorator('昵称', {
                                 rules: [{ required: true, message: '请输入您的昵称!', whitespace: true }],
                             })(<Input />)}
                         </Form.Item>
-                        <Form.Item label="电话号码">
+                        <Form.Item label="电话号码" value={this.state.number} name="number" onChange={e=>this.changeValue(e)}>
                             {getFieldDecorator('phone', {
                                 rules: [{ required: true, message: '请输入您的电话号码！' }],
                             })(<Input addonBefore={prefixSelector} style={{ width: '100%' }} />)}
@@ -161,7 +203,7 @@ class Register extends React.Component {
                             )}
                         </Form.Item>
                         <Form.Item {...tailFormItemLayout}>
-                            <Button type="primary" htmlType="submit" >
+                            <Button type="primary" htmlType="submit" onClick={this.upload()} >
                                 注册
                             </Button>
                         </Form.Item>
