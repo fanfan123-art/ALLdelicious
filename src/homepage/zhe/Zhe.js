@@ -1,26 +1,17 @@
 import React from "react";
-import { Layout } from 'antd';
-const { Content } = Layout;
 
 var ZheCss = require('../zhe/Zhe.css');
 export default class Zhe extends React.Component {
     render() {
         return (
-            <div>
-                <Content style={{ marginTop: 64 }}>
-                    <div style={{ width: '95%', background: '#fff', minHeight: 500, marginLeft: '2.5%', marginTop: "50px" }}>
-                        <div style={{ width: "100%", height: "50px" }}>
-                            <img src={require('../img/zhe.png')} className={ZheCss.biaopian}></img>
-                            <h1 style={{ marginLeft: '100px', lineHeight: '50px' }}> 浙菜</h1>
-                        </div>
+                    <div style={{ width: '95%', background: '#fff', minHeight: 500, marginLeft: '2.5%', marginTop: "20px" }}>
+                        
                         <div style={{ width: "23%", marginLeft: "20px", marginTop: "10px", height: "400px", display: 'inline-block', float: "left" }}>
                             <div style={{ width: "100%", height: "60%" }}>
                                 <img src={require('../img/西湖醋鱼.jpg')}></img>
                             </div>
                             <div style={{ width: "100%", height: "39%", marginTop: "5px" }} className={ZheCss.menufone} >
                                 <h3>西湖醋鱼</h3>
-                                <h5>健康功效：</h5>
-                                <p>草鱼:草鱼含有丰富的不饱和脂肪酸，对血液循环有利，是心血管病人的良好食物;草鱼含有丰富的硒元素，经常食用有抗衰老、养颜的功效，而且对肿瘤也有一定的防治作用;并具有暖胃和中、平肝祛风、治痹、截疟、益肠明眼目之功效，主治虚劳、风虚头痛、肝阳上亢、高血压、头痛、久疟。</p>
                                 <h5>原料：</h5>
                                 <p>鳊鱼 一条(约重700克) 绍兴陈酒25毫升、酱油75毫升 姜末2.5克、白糖60克 湿淀粉50克、米醋50毫升 胡椒粉适量</p>
                                 <h5>做法：</h5>
@@ -30,10 +21,7 @@ export default class Zhe extends React.Component {
                                 <p>(4)把炒锅内的汤汁，加入白糖、湿淀粉和醋，用手勺推搅成浓汁，见滚沸起泡，立即起锅，徐徐浇在鱼身上，即成。烹调技巧必须用活草鱼烹制，入开水锅中氽至断生捞出，保持整条不碎，肉质不糊烂。浇鱼卤汁要薄而浓，其味才美。</p>
                             </div>
                         </div>
-                        <div style={{ width: "100px", height: "20px", marginLeft: "48%" ,marginTop:"470px"}}>未完待续......</div>
                     </div>
-                </Content>
-            </div>
         )
     }
 }

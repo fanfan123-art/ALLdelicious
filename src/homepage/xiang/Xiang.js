@@ -1,15 +1,11 @@
 import React from "react";
-import { Layout } from 'antd';
-const { Content } = Layout;
 
 var XiangCss = require('../xiang/Xiang.css');
 export default class Xiang extends React.Component {
     render() {
         return (
-            <div>
-                <Content style={{ marginTop: 64 }}>
-                    <div style={{ width: '95%', background: '#fff', minHeight: 800, marginLeft: '2.5%', marginTop: "50px" }}>
-                        <div style={{ width: "100%", height: "50px" }}>
+                    <div style={{ width: '95%', background: '#fff', minHeight: 500, marginLeft: '2.5%', marginTop: "20px" }}>
+                    <div style={{ width: "100%", height: "50px" }}>
                             <img src={require('../img/xiang.png')} className={XiangCss.biaopian}></img>
                             <h1 style={{ marginLeft: '100px', lineHeight: '50px' }}> 湘菜</h1>
                         </div>
@@ -33,22 +29,15 @@ export default class Xiang extends React.Component {
                             </div>
                             <div style={{ width: "100%", height: "39%", marginTop: "5px", background: "gry" }} className={XiangCss.menufone} >
                                 <h3> 组庵鱼翅</h3>
-                                <h5>健康功效：</h5>
-                                <p>鱼翅(干):鱼翅胶质丰富、清爽软滑，是一种高蛋白、低糖、低脂肪的高级食品。鱼翅含降血脂、抗动脉硬化及抗凝成份，对心血管系统疾患有防治功效;鱼翅含有丰富的胶原蛋白，有利于滋养、柔嫩皮肤黏膜，是很好的美容食品。鱼翅味甘、咸，性平，能渗湿行水，开胃进食，清痰消鱼积，补五脏，长腰力，益虚痨。</p>
-                                <h5>原料:</h5>
+                                 <h5>原料:</h5>
                                 <p>水发玉结鱼翅2000克 精盐8克 味精2.5克干贝50克 胡椒盐1克 肥母鸡肉1500克 葱结50克 猪肘肉1000克 姜片50克 绍酒150克 熟鸡油25克 </p>
                                 <h5>做法：</h5>
                                 <p>1、将鸡宰杀去净毛，开膛去内脏洗净，砍成大块，猪肘肉刮洗干净后砍成块，一起下入开水锅内煮过捞出，用清水洗净血沫。葱、姜拍破。干贝掰去边上老筋，洗净后放入葱、姜、料酒和水，上笼蒸发待用。</p>
                                 <p>2.取大瓦钵一只，用竹箅子垫底，放入用白稀纱布包好的鱼翅。用鸡汤，加入料酒和葱、姜，在旺火上烧开后移到小火煨约半小时。从锅内取出鱼翅，这道汤倒掉不要，铺上猪肘肉、葱结、姜片、重新产入鱼翅、鸡块，再加入干贝汤、绍酒、精盐、清水1500克用盘盖上，在旺火上烧开，再移至小火上煨约4小时，直至鱼翅软烂、浓香、柔软。然后离火去掉鸡肉、肘肉和葱、姜。将鱼翅从白布中取出，摆放盘中。</p>
                                 <p>3.在炒锅内放入熟鸡油，烧至八成热，倒入大瓦钵内的原汤，放入味精，烧开成浓汁，浇在鱼翅上，撒上胡椒粉淋鸡油即成。</p>
-                                <h5>食谱相克：</h5>
-                                <p>猪肘:猪肉不宜与乌梅、甘草、鲫鱼、虾、鸽肉、田螺、杏仁、驴肉、羊肝、香菜、甲鱼、菱角、荞麦、鹌鹑肉、牛肉同食。食用猪肉后不宜大量饮茶。</p>
                             </div>
                         </div>
-                        <div style={{width:"100px",height:"20px",marginLeft:"48%"}}>未完待续......</div>
                     </div>
-                </Content>
-            </div >
         )
     }
 }

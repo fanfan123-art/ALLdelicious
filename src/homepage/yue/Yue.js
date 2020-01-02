@@ -1,30 +1,19 @@
 import React from "react";
-import { Layout } from 'antd';
-const { Content } = Layout;
+
 
 var YueCss = require('../yue/Yue.css');
 export default class Yue extends React.Component {
     render() {
         return (
-            <div>
-                <Content style={{ marginTop: 64 }}>
-                    <div style={{ width: '95%', background: '#fff', minHeight: 800, marginLeft: '2.5%', marginTop: "50px" }}>
-                        <div style={{ width: "100%", height: "50px" }}>
-                            <img src={require('../img/yue.png')} className={YueCss.biaopian}></img>
-                            <h1 style={{ marginLeft: '100px', lineHeight: '50px' }}> 粤菜</h1>
-                        </div>
+                    <div style={{ width: '95%', background: '#fff', minHeight: 500, marginLeft: '2.5%', marginTop: "20px" }}>
                         <div style={{ width: "23%", marginLeft: "20px", marginTop: "10px", height: "400px", display: 'inline-block', float: "left" }}>
                             <div style={{ width: "100%", height: "60%" }}>
                                 <img src={require('../img/白切鸡.jpg')}></img>
                             </div>
                             <div style={{ width: "100%", height: "39%", marginTop: "5px" }} className={YueCss.menufone} >
                                 <h3>白切鸡</h3>
-                                <h5>健康功效：</h5>
-                                <p>白切鸡:强壮身体的作用。鸡肉对营养不良、畏寒怕冷、乏力疲劳、月经不调、贫血、虚弱等有很好的食疗作用。祖国医学认为，鸡肉有温中益气、补虚填精、健脾胃、活血脉、强筋骨的功效。</p>
-                                <h5>原料:</h5>
-                                <p>净肥嫩雏母鸡1只(重约0.8～1.2公斤为好)、白切鸡成品照片(20张)、葱120克、姜40克、植物油120克、盐15克、香菜：100克</p>
-                                <h5>调料做法：盐焗味姜葱</h5>
-                                <p>原料：生姜20克，盐、糖各少许，葱白30克，盐焗鸡粉1茶匙，油1勺。</p>
+                                <p>原料:净肥嫩雏母鸡1只(重约0.8～1.2公斤为好)、白切鸡成品照片(20张)、葱120克、姜40克、植物油120克、盐15克、香菜：100克</p>
+                                <p>调料做法：盐焗味姜葱(原料：生姜20克，盐、糖各少许，葱白30克，盐焗鸡粉1茶匙，油1勺。)</p>
                                 <p>做法:</p>
                                 <p>1、首先要把姜去皮和葱白洗净，晾干水分。</p>
                                 <p>2、把姜、葱、香菜切成碎末、拌匀。</p>
@@ -37,10 +26,6 @@ export default class Yue extends React.Component {
                                 <p>2、葱，姜切成末；分别装在小碗中，碗内在加少许的盐（姜葱是同放一起调味的，出来只有一个味碟，另外还有姜葱里加少许香菜也可，口味更好）</p>
                                 <p>3、炒勺内倒入油，在旺火上烧开，浇在葱末和姜末上。作成两个粘料。</p>
                                 <p>4、切好的鸡和粘料一切上桌。</p>
-                                <h5>注意：</h5>
-                                <p>高血压、高血脂、胆囊炎患者忌食</p>
-                                <h5>食谱相克：</h5>
-                                <p>童子鸡：鸡肉忌与野鸡、甲鱼、鲤鱼、鲫鱼、兔肉、虾子以及葱蒜等一同食用；与芝麻、菊花同食易中毒；不宜与李子同食会导致腹泻；与芥末同食会上火。</p>
                             </div>
                         </div>
                         <div style={{ width: "23%", marginLeft: "20px", marginTop: "10px", height: "400px", display: 'inline-block' }}>
@@ -49,8 +34,6 @@ export default class Yue extends React.Component {
                             </div>
                             <div style={{ width: "100%", height: "39%", marginTop: "5px" }} className={YueCss.menufone} >
                                 <h3>烤乳猪</h3>
-                                <h5>健康功效：</h5>
-                                <p>猪皮含大量胶原蛋白，有养颜健肤功能。乳猪较瘦，脂肪含量少，老年人亦可放心食用。</p>
                                 <h5>原料:</h5>
                                 <p>小乳猪一只（3000克），精盐200克，白糖100克，八角粉5克，五香粉10克，南乳25克，芝麻酱25克，白糖50克，蒜5克，生粉25克，汾酒7克，糖水适量。</p>
                                 <p>做法:</p>
@@ -66,8 +49,6 @@ export default class Yue extends React.Component {
                             </div>
                             <div style={{ width: "100%", height: "39%", marginTop: "5px" }} className={YueCss.menufone} >
                                 <h3>糯米鸡</h3>
-                                <h5>健康功效：</h5>
-                                <p>糯米鸡，滋补佳品， 糯米富含B族维生素，能温暖脾胃，补益中气。 用荷叶制成的糯米鸡，对高血脂、高血压及肥胖症等有疗效。</p>
                                 <h5>原料:</h5>
                                 <p>新鲜大荷叶一片，糯米适量，鸡肉适量，白果、板栗适量，绵线、味精、盐、香葱、大蒜、食用油、酱油少许。</p>
                                 <h5>做法：</h5>
@@ -76,17 +57,10 @@ export default class Yue extends React.Component {
                                 <p>3、将辣椒、大蒜炒熟后加入鸡丁，再把鸡丁完全炒熟，同时放入适量味精、盐、香葱。白果和板栗先用白水煮熟。</p>
                                 <p>4、做好准备工作后，取出适量蒸好的糯米，在其中夹入炒好的鸡丁、白果和板栗，再加入少许胡椒、味精、盐，用荷叶将糯米包好，外用绵线捆扎，使糯米完全包裹在荷叶中。</p>
                                 <p>5、最后将其置于小火上清蒸，到荷叶颜色变暗，荷叶香味已可闻到时，即可取出食用。</p>
-                                <h5>注意：</h5>
-                                <p>1.一般人群均可以食用。糯米的主要功能是温补脾胃,所以一些脾胃亏虚、经常腹泻的人吃了能起到很好的食疗效果。</p>
-                                <p>2.老人、儿童、病人等胃肠浦化功能障碍者不宜食用，糖尿病、肥胖、高血脂、肾脏病患者尽量少吃或不吃。</p>
-                                <p>3.糯米年糕无论甜咸，其碳水化合物和钠的含量都很高，体重过重、有糖尿病或其他慢性病如肾脏病、高血脂的人要适可而止。</p>
-                                <p>4.湿热痰火偏盛、发热、咳嗽痰黄、黄疸、腹胀、糖尿病等病症患者不宜过多食用。</p>
+                        
                             </div>
                         </div>
-                        <div style={{width:"100px",height:"20px",marginLeft:"48%"}}>未完待续......</div>
                     </div>
-                </Content>
-            </div>
         )
     }
 }

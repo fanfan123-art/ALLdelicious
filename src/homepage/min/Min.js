@@ -6,31 +6,13 @@ var MinCss = require('../min/Min.css');
 export default class Min extends React.Component {
     render() {
         return (
-            <div>
-                <Content style={{ marginTop: 64 }}>
-                    <div style={{ width: '95%', background: '#fff', minHeight: 500, marginLeft: '2.5%', marginTop: "50px" }}>
-                        <div style={{ width: "100%", height: "50px" }}>
-                            <img src={require('../img/min.png')} className={MinCss.biaopian}></img>
-                            <h1 style={{ marginLeft: '100px', lineHeight: '50px' }}> 闽菜</h1>
-                        </div>
+                    <div style={{ width: '95%', background: '#fff', minHeight: 500, marginLeft: '2.5%', marginTop: "20px" }}>
                         <div style={{ width: "23%", marginLeft: "20px", marginTop: "10px", height: "400px", display: 'inline-block', float: "left" }}>
                             <div style={{ width: "100%", height: "60%" }}>
                                 <img src={require('../img/佛跳墙.jpg')}></img>
                             </div>
                             <div style={{ width: "100%", height: "39%", marginTop: "5px" }} className={MinCss.menufone} >
                                 <h3>佛跳墙</h3>
-                                <h5>健康功效：</h5>
-                                <p>1、促进发育</p>
-                                <p>2、增强免疫力、美容养颜、抑制血栓的形成、抑制癌细胞生长、降三高、防治男性前列腺疾病、增加造血功能、加速伤口愈合</p>
-                                <p>3、美容</p>
-                                <p>4、抗衰老促进生长改善冠心病</p>
-                                <p>5、降血压</p>
-                                <p>6、降胆固醇软化血管</p>
-                                <p>7、提高免疫力调经润肠促进生长发育</p>
-                                <p>8、提高机体免疫功能</p>
-                                <p>9、延缓衰老</p>
-                                <p>10、防癌抗癌</p>
-                                <p>11、降血压、降血脂、降胆固醇治疗疾病</p>
                                 <h5>原料：</h5>
                                 <p>主料：水发鱼翅500克、净鸭肫6个、水发刺参250克、鸽蛋12个、净肥母鸡1只、水发花冬菇200克、水发猪蹄筋250克、猪肥膘肉95克、大个猪肚1个、羊肘500克、净火腿腱肉150克</p>
                                 <p>调料：姜片75克、葱段95克、桂皮10克、炊发干贝125 克、绍酒2500克、净冬笋500克、味精10克、水发鱼唇250克、冰糖75克、鲂肚125克、上等酱油75克、金钱鲍1000克、猪骨汤1000克、猪蹄尖1000克、熟猪油1000克、净鸭1只。</p>
@@ -47,13 +29,7 @@ export default class Min extends React.Component {
                                 <p>2、花冬菇:即可末春初所产的香菇，面有菊花纹。</p>
                                 <p>3、鱼肚要用油泡 发，泡刺参时，刺参不能沾油。</p>
                                 <p>4、最后各种原料放入坛内，一定要上小火煨制，不可急躁，否则达不到效果。</p>
-                                <h5>食谱相克：</h5>
-                                <p>鲍鱼:鲍鱼忌与鸡肉、野猪肉、牛肝同食。</p>
-                                <p> 野鸡:野鸡肉忌与鹿肉、荞麦、葱、核桃、木耳、猪肝、鱼肉等一起食用。</p>
-                                <p>鸡 :鸡肉忌与野鸡、甲鱼、鲤鱼、鲫鱼、兔肉、虾子以及葱蒜等一同食用;与芝麻、菊花同食易中毒;不宜与李子、兔肉同食，会导致腹泻;与芥末同食会上火。</p>
-                                <p>竹笋:竹笋忌与羊肝同食。</p>
-                                <p>山药(干):山药恶甘遂、大戟，不可与碱性药物同服。</p>
-                                <p>枸杞子:枸杞一般不宜和过多茶性温热的补品如桂圆、红参、大枣等共同食用。</p>
+                                
                             </div>
                         </div>
                         <div style={{ width: "23%", marginLeft: "20px", marginTop: "10px", height: "400px", display: 'inline-block' }}>
@@ -62,8 +38,6 @@ export default class Min extends React.Component {
                             </div>
                             <div style={{ width: "100%", height: "39%", marginTop: "5px" }} className={MinCss.menufone} >
                                 <h3>荔枝肉</h3>
-                                <h5>健康功效：</h5>
-                                <p>瘦肉是维生素B1、B2、B12、PP的良好来源，瘦猪肉中的维生素B1含量相当高。</p>
                                 <h5>原料：</h5>
                                 <p>主料:猪肉(瘦) 300克</p>
                                 <p>辅料:荸荠100克</p>
@@ -78,10 +52,7 @@ export default class Min extends React.Component {
                                 <p>7.锅留余油，先下蒜末、葱白，煸一下再入卤汁烧沸，随即倒入荔枝肉和马蹄块翻炒几下即成。</p>
                             </div>
                         </div>
-                        <div style={{width:"100px",height:"20px",marginLeft:"48%"}}>未完待续......</div>
                     </div>
-                </Content>
-            </div>
         )
     }
 }

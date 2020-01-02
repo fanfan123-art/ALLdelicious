@@ -1,13 +1,21 @@
+.all{
+    width: '95%';
+     
+      min-Height: 500px;
+       margin:20px 2.5%;
+}
 img{
     width: 100%;
     height: 100%;
 }
-
+.border{
+    background-color: #eed70d83;
+}
 .menufone {
     overflow-x: hidden;
     overflow-y: scroll;
-    /* line-height: 30px; */
-    /* text-align: center; */
+    text-align: left;
+   
 }
 .menufone::-webkit-scrollbar {
     display: none;

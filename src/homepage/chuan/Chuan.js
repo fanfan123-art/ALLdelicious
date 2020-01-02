@@ -1,139 +1,35 @@
 import React from 'react';
-import { Layout } from 'antd';
-
-const { Content } = Layout;
-
 
 var ChuanCss = require('./Chuan.css');
 export default class Chuan extends React.Component {
     render() {
-        window.onload = function () {
-            var divArr =  document.getElementById('div');
-            var size = [
-                { "top": 150, "left": 0, "width": 650, "height": 520, "zIndex": 1, "opacity": 0 },
-                { "top": 150, "left": 0, "width": 650, "height": 520, "zIndex": 2, "opacity": 40 },
-                { "top": 75, "left": 120, "width": 800, "height": 670, "zIndex": 3, "opacity": 70 },
-                { "top": 0, "left": 250, "width": 1400, "height": 850, "zIndex": 4, "opacity": 100 },
-                { "top": 75, "left":970, "width": 800, "height": 670, "zIndex": 3, "opacity": 70 },
-                { "top": 150, "left": 1250, "width": 650, "height": 520, "zIndex": 2, "opacity": 40 },
-                { "top": 150, "left": 1250, "width":650, "height": 520, "zIndex": 1, "opacity": 0 }
-               
-            ];
-            var divSum = divArr.length;
-            var wrap = document.getElementById('wrap');
-            var cont = wrap.firstElementChild || wrap.firstChild;
-            var btnArr = wrap.getElementsByTagName('a');
-            var falg = true;
-            var speed = 7000;
-            wrap.onmouseover = function () {
-                for (var i = 0; i < btnArr.length; i++) {
-                    btnArr[i].style.display = 'block';
-                }
-                clearInterval(wrap.timer);
-            }
-            wrap.onmouseout = function () {
-                for (var i = 0; i < btnArr.length; i++) {
-                    btnArr[i].style.display = 'none';
-                }
-                wrap.timer = setInterval(function () {
-                    move(true);
-                }, speed);
-            }
-            for (var i = 0; i < divSum; i++) {
-                var lis = document.createElement('div');
-                lis.style.div= 'url(' + divArr[i].path + ')';
-                cont.appendChild(lis);
-            }
-            var liArr = cont.children;
-            move();
-            wrap.timer = setInterval(function () {
-                move(true);
-            }, speed);
-            btnArr[1].onclick = function () {
-                if (falg) {
-                    move(true);
-                }
-            }
-            btnArr[0].onclick = function () {
-                if (falg) {
-                    move(false);
-                }
-            }
-            function move(bool) {
-                if (bool != undefined) {
-                    if (bool) {
-                        size.unshift(size.pop());
-                    } else {
-                        size.push(size.shift());
-                    }
-                }
-                for (var i = 0; i < liArr.length; i++) {
-                    animate(liArr[i], size[i], function () {
-                        falg = true;
-                    });
-                }
-            }
-        }
-        function getStyle(obj, attr) {
-            return obj.currentStyle ? obj.currentStyle[attr] : window.getComputedStyle(obj, null)[attr];
-        }
-
-        function animate(obj, json, fn) {
-            clearInterval(obj.timer);
-            obj.timer = setInterval(function () {
-                var bool = true;
-                for (var k in json) {
-                    var leader;
-                    if (k == 'opacity') {
-                        if (getStyle(obj, k) == undefined) {
-                            leader = 100;
-                        } else {
-                            leader = parseInt(getStyle(obj, k) * 100);
-                        }
-                    } else {
-                        leader = parseInt(getStyle(obj, k)) || 0;
-                    }
-                    var step = (json[k] - leader) / 10;
-                    step = step > 0 ? Math.ceil(step) : Math.floor(step);
-                    leader = leader + step;
-                    if (k == 'zIndex') {
-                        obj.style[k] = json[k];
-                    } else if (k == 'opacity') {
-                        obj.style[k] = leader / 100;
-                        obj.style.filter = 'alpha(opacity=' + leader + ')';
-                    } else {
-                        obj.style[k] = leader + 'px';
-                    }
-                    if (json[k] != leader) {
-                        bool = false;
-                    }
-                }
-                if (bool) {
-                    clearInterval(obj.timer);
-                    if (fn) {
-                        fn();
-                    }
-                }
-            }, 10);
-        }
-
         return (
-         
-            <Content style={{ marginTop: 64 }}>
-            <div className={ChuanCss.wrap} id={'wrap'}>
-                <ul className={ChuanCss.content01}>
-                    <div id={'div'}>1</div>
-                    <div id={'div'}>2</div>
-                    <div id={'div'}>3</div>
-                    <div id={'div'}>4</div>
-                    <div id={'div'}>3</div>
-                    <div id={'div'}>2</div>
-                    <div id={'div'}>1</div>
-                </ul>
-                <a href="javascript:;" className={ChuanCss.prev}>&#60;</a>
-                <a href="javascript:;" className={ChuanCss.next}>&#62;</a>
+            <div style={{ width: '95%', background: '#fff', minHeight: 500, marginLeft: '2.5%', marginTop: "20px"}}>
+                <div style={{ width: "23%", marginLeft: "20px", marginTop: "10px", height: "400px", display: 'inline-block', float: "left" }}>
+                    <div style={{ width: "100%", height: "60%" }}>
+                        <img src={require('../img/清炖鸡孚.jpg')}></img>
+                    </div>
+                    <div style={{ width: "100%", height: "39%", marginTop: "5px" }} className={ChuanCss.menufone} >
+                        <h3>清炖鸡孚</h3>
+                        <h5>原料：</h5>
+                        <p>主料:鸡腿(185克) 猪肉(肥瘦)(185克)<br/>
+                        辅料:香菇(鲜)(60克) 火腿(60克) 鸡蛋清(100克)<br/>
+                        调料:姜(5克) 黄酒(15克) 小葱(3克) 淀粉(蚕豆)(30克) 盐(2克) 猪油(炼制)(60克)</p>
+                        <h5>做法：</h5>
+                        <p>1. 香菇去蒂，洗净;<br/>
+                        2. 葱姜分别洗净，均切成末;<br/>
+                        3. 熟火腿切片;<br/>
+                        4. 将猪肉切细，剁成米粒状，放入碗内，加葱末、姜末、精盐少量拌匀;<br/>
+                        5. 将鸡肉皮朝下，平摊在砧板上，用刀在鸡肉上轻轻排剁一次;<br/>
+                        6. 再将肉茸均匀地平铺在鸡肉上;<br/>
+                        7. 仍用刀在肉茸上横竖交叉剁两遍，使猪肉、鸡肉紧密粘在一起，再将鸡肉切成边长3 厘米的菱形块;<br/>
+                        8. 将鸡蛋清倒入盘中，用竹筷3 支，搅打成蛋泡糊，加干淀粉拌匀;<br/>
+                        9. 再将鸡肉块放入蘸满蛋泡糊;<br/>
+                        10. 炒锅置旺火烧热，放入熟猪油烧至五成热时，将鸡块分3 次逐块放入，炸约1 分钟，使鸡块稍起软壳，呈白色，用漏勺捞出，沥油;<br/>
+                        11. 放入炒锅内，加鸡清汤600毫升、火腿片、黄酒、精盐少量，盖上锅盖，用旺火烧沸后，再用小火焖约25 分钟，待鸡肉酥烂，放入香菇，再焖5 分钟即成。</p>
+                    </div> 
+                </div>
             </div>
-            </Content>
            
         )
     }
