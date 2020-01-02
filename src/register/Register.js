@@ -1,6 +1,5 @@
 import React from 'react';
 import {Form,Input,Tooltip,Icon,Select,Checkbox,Button,message} from 'antd';
-const { Option } = Select;
 var RegisterCss = require('./Register.css')
 class Register extends React.Component {
     //双向数据绑定
