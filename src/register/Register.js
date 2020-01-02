@@ -42,7 +42,7 @@ class Register extends React.Component {
             }
         }
         //发送数据
-        xhr.setRequestHeader('content-type','application/JSON')
+        xhr.setRequestHeader('content-type','application/json')
         xhr.send(JSON.stringify(data))
     }
     state = {
@@ -161,7 +161,7 @@ class Register extends React.Component {
                                 ],
                             })(<Input.Password />)}
                         </Form.Item>
-                        <Form.Item label="再次输入密码" hasFeedback value={this.state.password} name="password" onChange={e=>this.changeValue(e)}>
+                        <Form.Item label="再次输入密码" hasFeedback>
                             {getFieldDecorator('confirm', {
                                 rules: [
                                     {
