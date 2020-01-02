@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form,Input,Tooltip,Icon,Select,Checkbox,Button,message} from 'antd';
+import {Form,Input,Tooltip,Icon,Checkbox,Button,message} from 'antd';
 var RegisterCss = require('./Register.css')
 class Register extends React.Component {
     //双向数据绑定
@@ -105,7 +105,7 @@ class Register extends React.Component {
                 </div>
                 <div className={RegisterCss.Register}>
                     <Form {...formItemLayout} onSubmit={this.handleSubmit} action="/Login.js" style={{fontStyle:"white"}}>
-                        <Form.Item label="邮箱" value={this.state.email} name="email" onChange={e=>this.changeValue(e)}>
+                        <Form.Item label="邮箱">
                             {getFieldDecorator('email', {
                                 rules: [
                                     {
@@ -113,15 +113,15 @@ class Register extends React.Component {
                                         message: '请输入您的邮箱！',
                                     },
                                 ],
-                            })(<Input />)}
+                            })(<Input  value={this.state.email} name="email" onChange={e=>this.changeValue(e)}/>)}
                         </Form.Item>
-                        <Form.Item label="密码" hasFeedback value={this.state.password} name="password" onChange={e=>this.changeValue(e)}>
+                        <Form.Item label="密码" >
                             {getFieldDecorator('password', {
                                 rules: [{
                                         required: true,
                                         message: '请输入您的密码！',
                                     }],
-                            })(<Input.Password />)}
+                            })(<Input.Password hasFeedback value={this.state.password} name="password" onChange={e=>this.changeValue(e)}/>)}
                         </Form.Item>
                         <Form.Item
                             label={
@@ -131,16 +131,15 @@ class Register extends React.Component {
                                         <Icon type="question-circle-o" />
                                     </Tooltip>
                                 </span>
-                            }
-                            value={this.state.username} name="username" onChange={e=>this.changeValue(e)}>
+                            }>
                             {getFieldDecorator('昵称', {
                                 rules: [{ required: true, message: '请输入您的昵称!', whitespace: true }],
-                            })(<Input />)}
+                            })(<Input value={this.state.username} name="username" onChange={e=>this.changeValue(e)}/>)}
                         </Form.Item>
-                        <Form.Item label="电话号码" value={this.state.number} name="number" onChange={e=>this.changeValue(e)}>
+                        <Form.Item label="电话号码" >
                             {getFieldDecorator('phone', {
                                 rules: [{ required: true, message: '请输入您的电话号码！' }],
-                            })(<Input style={{ width: '100%' }} />)}
+                            })(<Input style={{ width: '100%' }} value={this.state.number} name="number" onChange={e=>this.changeValue(e)}/>)}
                         </Form.Item>
                         <Form.Item {...tailFormItemLayout}>
                             {getFieldDecorator('agreement', {

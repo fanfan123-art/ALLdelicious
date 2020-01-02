@@ -1,9 +1,37 @@
 import React from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox,message } from 'antd';
 import {Link} from 'react-router-dom';
 
 var LoginCss = require('../login/Login.css');
 class Login extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={}
+    }
+    changeValue=(e)=>{
+        this.setState({
+           [e.target.name]:e.target.value 
+        })
+    }
+    upload=()=>{
+        var data={
+            "username":this.state.username,
+            "password":this.state.password,
+        }
+        fetch("/user/login",{
+            method:"post",
+           headers:{
+               "Content-type":"application/json"
+           },
+           body:JSON.stringify(data)
+        }).then(response=>response.json())
+        .then(result=>{
+            message.info("登陆成功!")
+        }).catch(e=>{
+            message.error(e)
+        })
+
+}
     handleSubmit = e => {
         e.preventDefault();
         let history = this.props.history;
@@ -30,7 +58,7 @@ class Login extends React.Component {
                     {/* 头部 */}
                     <div className={LoginCss.Input}>
                         <Form onSubmit={this.handleSubmit} className={LoginCss.form}>
-                            <Form.Item>
+                            <Form.Item >
                                 {getFieldDecorator('username', {
                                     rules: [{ required: true, message: '请输入你的手机号/邮箱!' }],
                                 })(
@@ -38,6 +66,7 @@ class Login extends React.Component {
                                         prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                         placeholder="手机号/邮箱"
                                         size="large"
+                                        value={this.state.username} name="username" onChange={e=>this.changeValue(e)}
                                     />,
                                 )}
                             </Form.Item>
@@ -50,6 +79,7 @@ class Login extends React.Component {
                                         type="password"
                                         placeholder="密码"
                                         size="large"
+                                        value={this.state.password} name="password" onChange={e=>this.changeValue(e)}
                                     />,
                                 )}
                             </Form.Item>
