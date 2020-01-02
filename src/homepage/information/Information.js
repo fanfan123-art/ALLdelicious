@@ -44,7 +44,7 @@ class Information extends React.Component {
         return (
             <div className={InformationCss.all}>
                 <div className={InformationCss.header}>
-                    <h1>账号安全</h1>
+                    <h1>个人信息</h1>
                 </div>
             <Form style={{width:'100%',margin:'30px 0'}}
                 {...formItemLayout}
