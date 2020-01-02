@@ -14,37 +14,32 @@ class Register extends React.Component {
         })
     }
     upload=()=>{
-        //xhr
-        var xhr= new XMLHttpRequest()
         var data={
             "email":this.state.email,
             "username":this.state.username,
             "password":this.state.password,
             "number":this.state.number,
         }
-        //open连接
-        xhr.open("post","/user/register")
-        //配置响应函数
-        xhr.onreadystatechange=function(){
-            if(xhr.readyState==4){
-                if(xhr.status==200){
-                    var result=JSON.parse(xhr.responseText)
-                    if(result.state==2){
-                        message.info("用户名已存在！")
-                    }else if(result.state==1){
-                        message.info("注册成功！")
-                        this.props.history.push("/Homepage")
-                    }
-                    
-                }else{
-                    message.info(xhr.status)
-                }
+        fetch("/user/register",{
+            method:"post",
+           headers:{
+               "Content-type":"application/json"
+           },
+           body:JSON.stringify(data)
+        }).then(response=>response.json())
+        .then(result=>{
+            if (result.state==2) {
+                message.info("用戶已存在")
+            }else if(result.state==1){
+                message.info("注冊成功！")
             }
-        }
-        //发送数据
-        xhr.setRequestHeader('content-type','application/json')
-        xhr.send(JSON.stringify(data))
-    }
+        }).catch(e=>{
+            message.error(e)
+        })
+
+}
+
+
     state = {
         confirmDirty: false,
         autoCompleteResult: [],
@@ -64,14 +59,7 @@ class Register extends React.Component {
         this.setState({ confirmDirty: this.state.confirmDirty || !!value });
     };
 
-    compareToFirstPassword = (_rule, value, callback) => {
-        const { form } = this.props;
-        if (value && value !== form.getFieldValue('password')) {
-            callback('两次密码输入不一致');
-        } else {
-            callback();
-        }
-    };
+
 
     validateToNextPassword = (_rule, value, callback) => {
         const { form } = this.props;
@@ -81,16 +69,8 @@ class Register extends React.Component {
         callback();
     };
 
-    handleWebsiteChange = value => {
-        let autoCompleteResult;
-        if (!value) {
-            autoCompleteResult = [];
-        } else {
-            autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
-        }
-        this.setState({ autoCompleteResult });
-    };
-    render() {
+   
+    render(){
         const { getFieldDecorator } = this.props.form;
 
         const formItemLayout = {
@@ -115,14 +95,6 @@ class Register extends React.Component {
                 },
             },
         };
-        const prefixSelector = getFieldDecorator('prefix', {
-            initialValue: '86',
-        })(
-            <Select style={{ width: 70 }}>
-                <Option value="86">+86</Option>
-                <Option value="87">+87</Option>
-            </Select>,
-        );
 
 
         return (
@@ -138,10 +110,6 @@ class Register extends React.Component {
                             {getFieldDecorator('email', {
                                 rules: [
                                     {
-                                        type: 'email',
-                                        message: '请输入正确的邮箱!',
-                                    },
-                                    {
                                         required: true,
                                         message: '请输入您的邮箱！',
                                     },
@@ -150,29 +118,11 @@ class Register extends React.Component {
                         </Form.Item>
                         <Form.Item label="密码" hasFeedback value={this.state.password} name="password" onChange={e=>this.changeValue(e)}>
                             {getFieldDecorator('password', {
-                                rules: [
-                                    {
+                                rules: [{
                                         required: true,
                                         message: '请输入您的密码！',
-                                    },
-                                    {
-                                        validator: this.validateToNextPassword,
-                                    },
-                                ],
+                                    }],
                             })(<Input.Password />)}
-                        </Form.Item>
-                        <Form.Item label="再次输入密码" hasFeedback>
-                            {getFieldDecorator('confirm', {
-                                rules: [
-                                    {
-                                        required: true,
-                                        message: '请再次输入您的密码！',
-                                    },
-                                    {
-                                        validator: this.compareToFirstPassword,
-                                    },
-                                ],
-                            })(<Input.Password onBlur={this.handleConfirmBlur} />)}
                         </Form.Item>
                         <Form.Item
                             label={
@@ -191,7 +141,7 @@ class Register extends React.Component {
                         <Form.Item label="电话号码" value={this.state.number} name="number" onChange={e=>this.changeValue(e)}>
                             {getFieldDecorator('phone', {
                                 rules: [{ required: true, message: '请输入您的电话号码！' }],
-                            })(<Input addonBefore={prefixSelector} style={{ width: '100%' }} />)}
+                            })(<Input style={{ width: '100%' }} />)}
                         </Form.Item>
                         <Form.Item {...tailFormItemLayout}>
                             {getFieldDecorator('agreement', {
@@ -203,7 +153,7 @@ class Register extends React.Component {
                             )}
                         </Form.Item>
                         <Form.Item {...tailFormItemLayout}>
-                            <Button type="primary" htmlType="submit" onClick={this.upload()} >
+                            <Button type="primary" htmlType="submit" onClick={this.upload} >
                                 注册
                             </Button>
                         </Form.Item>
